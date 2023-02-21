@@ -30,5 +30,20 @@ def possession_changes():
     data['possession_change'] = (data['currentpossession'] != data['prev_possession']).astype(int)
     return data['possession_change'] == 1
 
+#get single possessions play by play
+def possessions_xgs():
+    groups = data.groupby(['gameid', 'currentpossession'])
 
+    #store starting location, total xg of possession
+    possession_xgs = groups['xg'].sum()
+    possession_x, possession_y = groups.first()['xadjcoord'], groups.first()['yadjcoord']
+
+    plt.scatter(list(possession_x), list(possession_y), list(possession_xgs), cmap = 'viridis')
+    plt.colorbar()
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.title('Heatmap of z values')
+    plt.show()
+
+possessions_xgs()
 a=0
