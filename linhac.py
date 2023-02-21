@@ -1,8 +1,10 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import math
 
 data = pd.read_csv('Linhac_df_keyed_20_games.csv')
+data = data[data['currentpossession'].notna()]
 
 lpr = data[data['eventname'] == 'lpr']
 xcoords = lpr['xadjcoord']
@@ -21,6 +23,12 @@ def lpr_density(bins):
     plt.colorbar()
     plt.show()
 
-    
-    
+#get rows where possession changes occur, returns boolean array
+def possession_changes():
+    data['prev_possession'] = data['currentpossession'].shift()
+
+    data['possession_change'] = (data['currentpossession'] != data['prev_possession']).astype(int)
+    return data['possession_change'] == 1
+
+
 a=0
