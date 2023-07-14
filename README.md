@@ -1,8 +1,5 @@
-# Linhac2023
-
+# Defensive Zone Puck Battles and Breakout Success
 <a name="br1"></a> 
-
-**Defensive Zone Puck Battles and Breakout Success**
 
 Ethan Parliament
 
